@@ -33,7 +33,7 @@ class GAppsLoginTemplate extends BaseTemplate {
         </div>
     <?php endif; ?>
     <div id="userloginForm">
-        <form name="userlogin" class="mw-ui-vform" method="get" action="<?php $this->text( 'action' ); ?>">
+        <form name="userlogin" class="mw-ui-vform" method="get" action="/index.php/Special:UserLogin">
             <section class="mw-form-header">
                 <?php $this->html( 'header' ); /* extensions such as ConfirmEdit add form HTML here */ ?>
             </section>
