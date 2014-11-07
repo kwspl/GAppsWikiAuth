@@ -143,11 +143,7 @@ class GAppsAuth {
      * @return mixed Configuration
      */
     public static function init() {
-        global $wgRequest, $wgGAppsSessionKey, $wgGAppsTempPath;
-
-        if (!is_null($wgRequest->getSessionData($wgGAppsSessionKey))) {
-            return $wgRequest->getSessionData($wgGAppsSessionKey);
-        }
+        global $wgGAppsTempPath;
         
         if (!file_exists($wgGAppsTempPath)) {
             if (!mkdir($wgGAppsTempPath, 0777, true)) {
@@ -264,7 +260,11 @@ class GAppsAuth {
      * @param string $domain
      */
     public static function getGoogleUser($domain) {
-        global $wgRequest;
+        global $wgRequest, $wgGAppsSessionKey;
+        
+        if (!is_null($wgRequest->getSessionData($wgGAppsSessionKey))) {
+            return $wgRequest->getSessionData($wgGAppsSessionKey);
+        }
         self::load_libs();
         
         $config = self::init();
